@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2023 a las 20:18:10
+-- Tiempo de generación: 19-12-2023 a las 20:08:04
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -59,7 +59,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2023_11_24_164742_create_pokemon_table', 1),
-(6, '2023_12_02_113504_create_pokemones', 2);
+(6, '2023_12_02_113504_create_pokemones', 2),
+(7, '2023_12_19_185449_create_usuarios_table', 3);
 
 -- --------------------------------------------------------
 
@@ -113,26 +114,7 @@ CREATE TABLE `pokemones` (
 --
 
 INSERT INTO `pokemones` (`id`, `nombre`, `tipo`, `tamaño`, `peso`, `created_at`, `updated_at`) VALUES
-(3, 'Bulbasur', 'planta', 'pequeño', '7.00', '2023-12-02 11:19:40', '2023-12-02 11:19:40'),
-(4, 'Vileplume', 'planta', 'mediano', '15.00', '2023-12-02 11:20:20', '2023-12-02 11:20:20'),
-(5, 'Squirtle', 'agua', 'pequeño', '9.00', '2023-12-02 11:20:41', '2023-12-02 11:20:41'),
-(6, 'Vaporeon', 'agua', 'mediano', '15.00', '2023-12-02 11:20:55', '2023-12-02 11:20:55'),
-(7, 'Charmander', 'fuego', 'pequeño', '8.00', '2023-12-02 11:21:13', '2023-12-02 11:21:13'),
-(8, 'Vulpix', 'fuego', 'pequeño', '6.00', '2023-12-02 11:21:30', '2023-12-02 11:21:30'),
-(9, 'Pikachu', 'electrico', 'pequeño', '6.00', '2023-12-02 11:21:45', '2023-12-02 11:21:45'),
-(10, 'Voltorb', 'electrico', 'mediano', '20.00', '2023-12-02 11:22:24', '2023-12-02 11:22:24'),
-(11, 'Rhyhorn', 'tierra', 'grande', '10.00', '2023-12-02 11:22:59', '2023-12-02 11:23:18'),
-(12, 'Cubone', 'tierra', 'pequeño', '8.00', '2023-12-02 11:23:57', '2023-12-02 11:23:57'),
-(13, 'Io5AQBEfbw', 'agua', 'pequeño', '85.00', NULL, NULL),
-(14, 'Wbpg5n3Rgl', 'agua', 'mediano', '24.60', NULL, NULL),
-(15, 'b2sGPOJ880', 'planta', 'grande', '74.40', NULL, NULL),
-(16, 'Tau0FqSI3k', 'agua', 'grande', '4.10', NULL, NULL),
-(17, 'CMmfZhrzae', 'electrico', 'grande', '97.70', NULL, NULL),
-(18, 'YS06wPcYSN', 'fuego', 'mediano', '76.00', NULL, NULL),
-(19, 'nS9XeoAkQb', 'planta', 'pequeño', '80.50', NULL, NULL),
-(20, 'ejK03qiFxW', 'planta', 'mediano', '24.10', NULL, NULL),
-(21, 'jRtIl62xWZ', 'tierra', 'mediano', '65.30', NULL, NULL),
-(22, 'E3zWpmhrjl', 'electrico', 'pequeño', '3.10', NULL, NULL);
+(33, 'Vaporeon', 'agua', 'mediano', '20.00', '2023-12-19 17:45:22', '2023-12-19 17:45:22');
 
 -- --------------------------------------------------------
 
@@ -147,6 +129,20 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rol` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -196,6 +192,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`name`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -209,7 +211,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -221,7 +223,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `pokemones`
 --
 ALTER TABLE `pokemones`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
