@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2023 a las 13:24:44
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 24-01-2024 a las 20:09:29
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -45,7 +45,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -58,8 +58,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_11_24_164742_create_pokemon_table', 1),
-(6, '2023_12_02_113504_create_pokemones', 2);
+(5, '2024_01_24_183941_create_usuarios_table', 1);
 
 -- --------------------------------------------------------
 
@@ -68,8 +67,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -81,11 +80,11 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -95,51 +94,45 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pokemones`
---
-
-CREATE TABLE `pokemones` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `tipo` varchar(255) NOT NULL,
-  `tamaño` enum('grande','mediano','pequeño') NOT NULL,
-  `peso` decimal(8,2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `pokemones`
---
-
-INSERT INTO `pokemones` (`id`, `nombre`, `tipo`, `tamaño`, `peso`, `created_at`, `updated_at`) VALUES
-(3, 'Bulbasur', 'planta', 'pequeño', 7.00, '2023-12-02 11:19:40', '2023-12-02 11:19:40'),
-(4, 'Vileplume', 'planta', 'mediano', 15.00, '2023-12-02 11:20:20', '2023-12-02 11:20:20'),
-(5, 'Squirtle', 'agua', 'pequeño', 9.00, '2023-12-02 11:20:41', '2023-12-02 11:20:41'),
-(6, 'Vaporeon', 'agua', 'mediano', 15.00, '2023-12-02 11:20:55', '2023-12-02 11:20:55'),
-(7, 'Charmander', 'fuego', 'pequeño', 8.00, '2023-12-02 11:21:13', '2023-12-02 11:21:13'),
-(8, 'Vulpix', 'fuego', 'pequeño', 6.00, '2023-12-02 11:21:30', '2023-12-02 11:21:30'),
-(9, 'Pikachu', 'electrico', 'pequeño', 6.00, '2023-12-02 11:21:45', '2023-12-02 11:21:45'),
-(10, 'Voltorb', 'electrico', 'mediano', 20.00, '2023-12-02 11:22:24', '2023-12-02 11:22:24'),
-(11, 'Rhyhorn', 'tierra', 'grande', 10.00, '2023-12-02 11:22:59', '2023-12-02 11:23:18'),
-(12, 'Cubone', 'tierra', 'pequeño', 8.00, '2023-12-02 11:23:57', '2023-12-02 11:23:57');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `dni` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nick` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidos` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rol` enum('admin','usuario') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`dni`, `nick`, `email`, `nombre`, `apellidos`, `fecha_nacimiento`, `password`, `rol`, `created_at`, `updated_at`) VALUES
+('48586978r', 'alexda', 'dadas@gmail.com', 'adsad', 'asdasda', '2024-01-04', '$2y$12$Oxhka0SfgWGV9raZGEapwewr7wJnjQ9PppcZkYcty4SOhBsqKUdiK', 'usuario', '2024-01-24 18:08:35', '2024-01-24 18:08:35');
 
 --
 -- Índices para tablas volcadas
@@ -173,17 +166,18 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indices de la tabla `pokemones`
---
-ALTER TABLE `pokemones`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`dni`),
+  ADD UNIQUE KEY `usuarios_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -199,19 +193,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `pokemones`
---
-ALTER TABLE `pokemones`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
